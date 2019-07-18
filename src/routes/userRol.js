@@ -1,5 +1,4 @@
 const UserRol = require('../../library/MongoDB/models/user_rol');
-const User = require('../../library/MongoDB/models/user');
 const checkAuth = require('../middlewares/check-auth');
 const express = require('express');
 
@@ -33,15 +32,8 @@ router.get('/', (req, res) => {
 router.get('/all', (req, res) => {
 
     UserRol.find({}).
-    populate('User').
-    populate('Rol').
-    exec((err, response) => {
-
-        /*        User.populate(response, function(err, libros) {
-                   res.status(200).send(libros);
-               }); */
-
-        console.log(response);
+    populate({ path: 'id_user' }).
+    populate({ path: 'id_rol' }).exec((err, response) => {
 
         if (!err) {
             return res.status(200).json(message(true, response, "Se consulto exitosamente"));
@@ -51,7 +43,6 @@ router.get('/all', (req, res) => {
     });
 
 });
-
 
 
 router.post('/', (req, res) => {
@@ -71,8 +62,6 @@ router.post('/', (req, res) => {
 
 
 });
-
-
 
 
 router.put('/:id', (req, res) => {
@@ -99,7 +88,7 @@ router.put('/:id', (req, res) => {
 });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkAuth, (req, res) => {
     // Validate Request
     if (!req.params.id) {
         return res.status(400).json(message(true, null, "No existe el parametro"));

@@ -7,13 +7,17 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
 
+// =================================================================
+// conect mongo ====================================================
+// =================================================================
+
 //Import the mongoose module
 const mongoose = require('mongoose');
 
 //Set up default mongoose connection
 const mongoDB = 'mongodb://zayro:zayro2019@ds243054.mlab.com:43054/sib219';
 
-mongoose.connect(mongoDB, { useMongoClient: true, useNewUrlParser: true }).then(() => {
+mongoose.connect(mongoDB, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
         console.log('Database connected');
     })
     .catch((error) => {
@@ -28,6 +32,7 @@ app.use(bodyParser.urlencoded({ 'extended': 'true' })); // parse application/x-w
 app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request
+
 
 
 
@@ -94,8 +99,8 @@ app.use((error, req, res, next) => {
 });
 
 
+var port = process.env.PORT || 8080;
 
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(port, () => console.log('Api SIB listening on port ' + port));
 
 //module.exports = app;
