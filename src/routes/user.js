@@ -61,6 +61,32 @@ router.get('/email/:email', checkAuth, (req, res) => {
 
 });
 
+router.get('/search/:data', checkAuth, (req, res) => {
+
+    User.find({
+            "$or": [{
+                "email": req.params.data
+            }, {
+                "username": req.params.data
+            }]
+        })
+        .then(response => {
+            if (!response) {
+                return res.status(400).json(message(true, response, "no se pudo encontrar registros"));
+            } else {
+                return res.status(200).json(message(true, response, "Se consulto exitosamente"));
+            }
+
+        }).catch(err => {
+            return res.status(500).json(message(false, err, "Ocurrio un problema al consultar"));
+        });
+
+
+});
+
+
+
+
 /** 
  * Metodos de creacion 
  */

@@ -16,7 +16,7 @@
   "explorer.sortOrder": "type",
   "files.trimFinalNewlines": true,
   "workbench.editor.highlightModifiedTabs": true,
-  "javascript.validate.enable": true,
+  "javascript.validate.enable": false,
   "javascript.referencesCodeLens.enabled": true,
   "tslint.ignoreDefinitionFiles": true
   /*

@@ -1,0 +1,479 @@
+{
+	"info": {
+		"_postman_id": "863008d8-db99-4fe0-85fc-bc7346a7fac9",
+		"name": "SIB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "permission",
+			"item": [
+				{
+					"name": "{{url}}/permission/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"permission_name\": \"admin\",\n        \"descripcion\": \"permite administrar\",\n        \"url\": \"cvb\",\n        \"active\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/permission/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"permission",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/permission/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/permission/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"permission",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/permission/search/MarlonZayro/cvb",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/permission/search/MarlonZayro/cvb",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"permission",
+								"search",
+								"MarlonZayro",
+								"cvb"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "rol",
+			"item": [
+				{
+					"name": "/rol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"rol_name\": \"visualizar\",\n        \"description\": \"permite ver\",\n        \"active\": true\n}"
+						},
+						"url": {
+							"raw": "{{url}}/rol/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"rol",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/rol/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/rol/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"rol",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user_rol",
+			"item": [
+				{
+					"name": "{{url}}/userRol",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"id_user\": \"5d2e76cab39d434e65cdc373\",\n        \"id_rol\": \"5d2ff3138a392804857c274a\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}/userRol",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userRol"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/userRol/",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userRol/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userRol",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/userRol/search/MarlonZayro",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/userRol/search/MarlonZayro",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"userRol",
+								"search",
+								"MarlonZayro"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/userRol/idUsuario/5d2e76cab39d434e65cdc373",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/userRol/idUsuario/5d2e76cab39d434e65cdc373",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"userRol",
+								"idUsuario",
+								"5d2e76cab39d434e65cdc373"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "{{url}}/user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/user/",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"Test 01\",\n        \"username\": \"testing02\",\n        \"email\": \"test02@gmail.com\",\n        \"password\": \"password\",\n        \"active\": 1\n}"
+						},
+						"url": {
+							"raw": "{{url}}/user/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/user/username/MarlonZayro",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/user/username/testing",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"username",
+								"testing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/user/5d2f80619adb393f24d37b39",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"name\": \"Tst\",\n        \"username\": \"test01\",\n        \"email\": \"test01@gmail.com\",\n        \"password\": \"password\",\n        \"active\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/5d3028cc416fc206f740e5d5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"5d3028cc416fc206f740e5d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/user/5d2f80619adb393f24d37b39",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/5d2f86831cdeb14d1dd47937",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"5d2f86831cdeb14d1dd47937"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/user/email/test@gmail.com",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user/email/test@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"email",
+								"test@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/user/username/testing",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/user/username/testing",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"user",
+								"username",
+								"testing"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/auth/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a36dd126-10d4-4d0b-9958-db51d81c15b7",
+						"exec": [
+							"// Variables",
+							"console.log('CARGANDO INFORMACION: auth/login');",
+							"",
+							"",
+							"pm.test(\"test login\", function () {",
+							"    const jsonData = pm.response.json();",
+							"    console.log(jsonData);",
+							"    pm.environment.set(\"token\", 'Bearer ' + jsonData.token);",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"username\": \"testing02\",\n        \"password\": \"password\"\n}"
+				},
+				"url": {
+					"raw": "{{url}}/auth/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/Welcome",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
