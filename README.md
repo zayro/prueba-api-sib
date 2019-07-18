@@ -1,6 +1,6 @@
 # Guia Examen API - SIB
 
-El exámen está compuesto por dos aplicaciones, un backend escrito en NodeJS el cual expondráuna API REST para la interacción con la aplicación frontend
+El exámen está generado una api backend escrito en NodeJS y MongoDb el cual expondráuna API REST para la interacción con la aplicación frontend
 
 ## instalar el aplicativo
 
