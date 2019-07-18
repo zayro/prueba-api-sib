@@ -20,6 +20,20 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/search/:rolName', (req, res) => {
+
+    Rol.find({ rol_name: req.params.rolName }, function(err, response) {
+
+        if (!err) {
+            return res.status(200).json(message(true, response, "Se consulto exitosamente"));
+        } else {
+            return res.status(500).json(message(false, err, "Ocurrio un problema al consultar"));
+        }
+
+    });
+
+});
+
 
 router.post('/', (req, res) => {
 

@@ -6,8 +6,8 @@ El exámen está compuesto por dos aplicaciones, un backend escrito en NodeJS el
 
 Se debe tener instalado
 
-[*] nodejs
-[*] npm
+- nodejs
+- npm
 
 clonar el repositorio y ejecutar el comando `npm install`  
 
