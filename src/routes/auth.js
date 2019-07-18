@@ -3,7 +3,7 @@ const express = require('express');
 const jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
 const dotenv = require('dotenv');
 const moment = require('moment');
-
+const { compareEncryptedData, encrypt } = require('../utils/tools');
 
 dotenv.config();
 
@@ -26,12 +26,41 @@ const message = (status, response, message, token = null) => {
 // ---------------------------------------------------------
 // authentication (no middleware necessary since this is not authenticated)
 // ---------------------------------------------------------
-// http://localhost:8080/api/authenticate
+// 
 
 router.post('/login', function(req, res) {
-    var query = { email: req.body.email, password: req.body.password };
+
+    var query = { username: req.body.username };
+
     User.findOne(query)
         .then(response => {
+
+            if (response.length < 1) {
+                return res.status(401).json({
+                    message: "Email no Valid"
+                });
+            }
+
+
+            try {
+
+                const validPass = compareEncryptedData(req.body.password, response.password);
+                console.log(validPass);
+
+                if (!validPass) {
+                    return res.status(401).json({
+                        message: 'Auth failed',
+                    });
+                }
+
+
+            } catch (error) {
+                return res.status(500).json({
+                    message: 'Error Auth failed',
+                });
+            }
+
+
             if (!response) {
                 return res.status(400).json(message(true, response, "no se pudo encontrar registros"));
             } else {

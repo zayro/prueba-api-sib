@@ -69,4 +69,4 @@ const checkToken = (tokens) => {
 }
 
 
-module.exports = { token, checkToken };
+module.exports = { token, checkToken, message, encrypt, compareEncryptedData };

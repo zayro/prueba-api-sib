@@ -2,6 +2,15 @@
 
 El exámen está compuesto por dos aplicaciones, un backend escrito en NodeJS el cual expondráuna API REST para la interacción con la aplicación frontend
 
+## instalar el aplicativo
+
+Se debe tener instalado
+
+[*] nodejs
+[*] npm
+
+clonar el repositorio y ejecutar el comando `npm install`  
+
 ## Status Codes
 devuelve los siguientes códigos de estado en el API:
 
@@ -31,17 +40,19 @@ El atributo `status` describe si la transacción fue exitosa o no.
 
 El atributo `data` contiene cualquier otro metadato asociado con la respuesta. Esta será una cadena escapada que contiene datos JSON.
 
-### Ejemplos de peticiones.
 
-```http
-GET https://sib-api.herokuapp.com
-```
-|Request| Parameter | Type | Description |
-| ---- | --------- | ---- | ----------- |
-| `GET` | [example](cuerpo-del-body-peticion-POST)| `string` |retorna todos los campos de una tabla |
-| `POST` | [example](cuerpo-del-body-peticion-POST) | `object` |retorna todos los campos de una tabla |
-| `PUT` | [example](cuerpo-del-body-peticion-PUT) | `object` |retorna respuesta del servidor |
-| `DELETE` | [example](cuerpo-del-body-peticion-DELETE) | `object` |retorna respuesta del servidor |
+
+### Despligue aplicacion cloud Heroku
+
+el aplicativo se testeo con heroku subiendo el proyecto con un deploy en heroku manejando estandares de calidad en el desarrollo.
+
+URL BACK-END
+https://api-sib.herokuapp.com/
+
+
+### Development Local
+
+Ejecutar `npm run dev`  permite navegar localmente `http://localhost:3000/`. la aplicacion automaticamente se recarga segun los cambios que se afecten.
 
 ### Documentacion
 

@@ -1,18 +1,10 @@
 const Rol = require('../../library/MongoDB/models/rol');
 const checkAuth = require('../middlewares/check-auth');
 const express = require('express');
+const { message } = require('../utils/tools');
 
 const router = express.Router();
 
-
-const message = (status, response, message) => {
-    const data = {};
-    data.status = status;
-    data.data = response;
-    data.message = message;
-
-    return data;
-};
 
 router.get('/', (req, res) => {
 
@@ -74,7 +66,7 @@ router.put('/:id', (req, res) => {
 });
 
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', checkAuth, (req, res) => {
     // Validate Request
     if (!req.params.id) {
         return res.status(400).json(message(true, null, "No existe el parametro"));

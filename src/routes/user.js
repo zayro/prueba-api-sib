@@ -1,18 +1,13 @@
 const User = require('../../library/MongoDB/models/user');
 const checkAuth = require('../middlewares/check-auth');
 const express = require('express');
+const { message, encrypt } = require('../utils/tools');
 
 const router = express.Router();
 
-
-function message(status, response, message) {
-    const data = {};
-    data.status = status;
-    data.data = response;
-    data.message = message;
-
-    return data;
-}
+/** 
+ * Metodos de consulta 
+ */
 
 router.get('/', (req, res) => {
 
@@ -47,7 +42,7 @@ router.get('/username/:username', checkAuth, (req, res) => {
 
 });
 
-router.get('/email/:email', (req, res) => {
+router.get('/email/:email', checkAuth, (req, res) => {
     //(req.body);
     //req.params.username;
 
@@ -66,13 +61,16 @@ router.get('/email/:email', (req, res) => {
 
 });
 
+/** 
+ * Metodos de creacion 
+ */
 router.post('/', (req, res) => {
 
     const user = new User({
         name: req.body.name,
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
+        password: encrypt(req.body.password),
         active: req.body.active
     });
 
@@ -89,7 +87,10 @@ router.post('/', (req, res) => {
 
 });
 
-router.put('/:id', (req, res) => {
+/** 
+ * Metodos de actualizacion 
+ */
+router.put('/:id', checkAuth, (req, res) => {
     // Validate Request
     if (!req.params.id) {
         return res.status(400).send({
@@ -97,11 +98,17 @@ router.put('/:id', (req, res) => {
         });
     }
 
+    if (!req.body.email) {
+        return res.status(400).send({
+            message: "Email not null"
+        });
+    }
+
     User.update({ _id: req.params.id }, {
             name: req.body.name,
             username: req.body.username,
             email: req.body.email,
-            password: req.body.password,
+            password: encrypt(req.body.password),
             active: req.body.active
         })
         .then(response => {
@@ -115,7 +122,10 @@ router.put('/:id', (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+/** 
+ * Metodos de eliminacion 
+ */
+router.delete('/:id', checkAuth, (req, res) => {
     // Validate Request
     if (!req.params.id) {
         return res.status(400).json(message(true, null, "No existe el parametro"));
@@ -123,6 +133,27 @@ router.delete('/:id', (req, res) => {
 
     // Process Delete
     User.deleteOne({ _id: req.params.id })
+        .then(response => {
+            if (response) {
+                return res.status(200).json(message(true, response, "Se elimino exitosamente"));
+            } else {
+                return res.status(400).json(message(true, response, "Se elimino exitosamente"));
+            }
+
+        }).catch(err => {
+            return res.status(500).json(message(true, err, "Ocurrio un problema al consultar"));
+        });
+
+});
+
+router.delete('/username/:username', checkAuth, (req, res) => {
+    // Validate Request
+    if (!req.params.username) {
+        return res.status(400).json(message(true, null, "No existe el parametro"));
+    }
+
+    // Process Delete
+    User.deleteOne({ username: req.params.username })
         .then(response => {
             if (response) {
                 return res.status(200).json(message(true, response, "Se elimino exitosamente"));

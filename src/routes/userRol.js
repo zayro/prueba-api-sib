@@ -1,18 +1,15 @@
 const UserRol = require('../../library/MongoDB/models/user_rol');
 const checkAuth = require('../middlewares/check-auth');
 const express = require('express');
+const { message } = require('../utils/tools');
 
 const router = express.Router();
 
 
-const message = (status, response, message) => {
-    const data = {};
-    data.status = status;
-    data.data = response;
-    data.message = message;
 
-    return data;
-};
+/** 
+ * Metodos de consulta 
+ */
 
 router.get('/', (req, res) => {
 
@@ -27,7 +24,6 @@ router.get('/', (req, res) => {
     });
 
 });
-
 
 router.get('/all', (req, res) => {
 
@@ -44,6 +40,48 @@ router.get('/all', (req, res) => {
 
 });
 
+router.get('/search/:username', (req, res) => {
+    // Validate Request
+    if (!req.params.username) {
+        return res.status(400).send({
+            message: "Note content can not be empty"
+        });
+    }
+    UserRol.find({}).
+    populate({
+        path: 'id_user',
+        match: {
+            username: { $gte: req.params.username }
+        }
+    }).populate({ path: 'id_rol' }).exec((err, response) => {
+
+        if (!err) {
+            return res.status(200).json(message(true, response, "Se consulto exitosamente"));
+        } else {
+            return res.status(500).json(message(false, err, "Ocurrio un problema al consultar"));
+        }
+    });
+
+});
+
+router.get('/idUsuario/:idUser', (req, res) => {
+
+    UserRol.find({ id_user: req.params.idUser }, function(err, response) {
+
+        if (!err) {
+            return res.status(200).json(message(true, response, "Se consulto exitosamente"));
+        } else {
+            return res.status(500).json(message(false, err, "Ocurrio un problema al consultar"));
+        }
+
+    });
+
+});
+
+
+/** 
+ * Metodos de creacion 
+ */
 
 router.post('/', (req, res) => {
 
@@ -63,6 +101,9 @@ router.post('/', (req, res) => {
 
 });
 
+/** 
+ * Metodos de actualizacion 
+ */
 
 router.put('/:id', (req, res) => {
     // Validate Request
@@ -87,7 +128,9 @@ router.put('/:id', (req, res) => {
 
 });
 
-
+/** 
+ * Metodos de Eliminacion 
+ */
 router.delete('/:id', checkAuth, (req, res) => {
     // Validate Request
     if (!req.params.id) {
