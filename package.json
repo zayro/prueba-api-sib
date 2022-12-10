@@ -28,7 +28,7 @@
         "compression": "^1.7.1",
         "dotenv": "^5.0.1",
         "errorhandler": "^1.5.0",
-        "express": "^4.17.1",
+        "express": "^4.17.3",
         "json-server": "^0.12.2",
         "jsonwebtoken": "^8.5.1",
         "method-override": "^2.1.3",
